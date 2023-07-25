@@ -5,9 +5,6 @@ import pandas as pd
 # Load the array from the .npy file
 lines_array = np.load('data.npy')
 
-positive_lines_array = []
-negative_lines_array = []
-
 def polar_to_slope_intercept(polar_array):
     # Convert polar coordinates to slope-intercept form (m, c)
     m_values = np.tan(polar_array[:, 1])
@@ -19,7 +16,7 @@ def polar_to_slope_intercept(polar_array):
 m_values, c_values = polar_to_slope_intercept(lines_array)
 
 # Create a DataFrame to hold the results
-# Stricktly speaking, this is not necessary, and a waste of memory, but it makes the code easier to read
+# This is not really necessary, and a waste of processing/memory, but it does make the code easier to read
 result_df = pd.DataFrame({'r': lines_array[:,0], 'theta': lines_array[:,1], 'm': m_values, 'c': c_values, 'score': lines_array[:,2]})
 
 # Split into positive and negative gradient lines
